@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Portafolio</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.6.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <!--MENÚ ENCABEZADO-->
+    <div class="contenedor-header">
+        <header>
+            <div class="logo">
+                <a href="#">Laura</a>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#inicio" onclick="seleccionar()">HOME</a></li>
+                    <li><a href="#sobremi" onclick="seleccionar()">ABOUT ME</a></li>
+                    <li><a href="#skills" onclick="seleccionar()">SKILLS</a></li>
+                    <li><a href="#curriculum" onclick="seleccionar()">RESUME</a></li>
+                    <li><a href="#portfolio" onclick="seleccionar()">PROJECTS</a></li>
+                    <li><a href="#contacto" onclick="seleccionar()">CONTACT</a></li>
+                </ul>
+            </nav>
+            <div class="nav-responsive" onclick="mostrarOcultarMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </header>
+    </div>
+
+    <!--SECCIÓN HOME-->
+    <section id="inicio" class="inicio">
+        <div class="contenido-banner">
+            <div class="contenedor-img">
+                <img src="img/foto.png" alt="">
+            </div>
+            <h1>LAURA MARTINEZ</h1>
+            <h2>Software Development Technician - Digital Animation Technologist</h2>
+            <div class="redes">
+                <a id="instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a id="facebook" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a id="linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>    
+
+    <!--SECCIÓN ABOUT ME-->
+    <section id="sobremi" class="sobremi">
+        <div class="contenido-seccion">
+            <h2>About me</h2>
+            <p><span>Hi, my name is Laura Martinez.</span>I’m a 25-year-old Colombian currently in Quebec as a tourist. I’m excited about the opportunity to settle in Canada and embrace new professional challenges. With a passion for taking on new roles and contributing my skills and experience, I’m fluent in English and actively learning French. I’m eager to bring my best to a dynamic environment and grow in this new chapter of my life.</p>
+
+            <div class="fila">
+                <!--datos personales--> 
+                <div class="col">
+                    <h3>Information</h3>
+                    <ul>
+                        <li><strong>Birthday</strong> 22-08-1999</li>
+                        <li><strong>Phone</strong> +1 581 688 5368</li>
+                        <li><strong>Email</strong> laura-estefania52@hotmail.com</li>
+                    </ul>
+                </div>
+
+                <!--intereses-->
+                <div class="col">
+                    <h3>Hobbies</h3>
+                    <div class="contenedor-intereses">
+                        <div class="interes">
+                            <i class="fa-solid fa-gamepad"></i>
+                            <span>GAMES</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-headphones"></i>
+                            <span>MUSIC</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-paintbrush"></i>
+                            <span>PAINT</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-book"></i>
+                            <span>READ</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-duotone fa-solid fa-person-walking"></i>
+                            <span>WALK</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-plane"></i>
+                            <span>TRAVEL</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-person-hiking"></i>
+                            <span>HIKING</span>
+                        </div>
+                        <div class="interes">
+                            <i class="fa-solid fa-dog"></i>
+                            <span>ANIMALS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="downloadBtn">
+                Download CV <i class="fa-solid fa-download"></i>
+                <span class="overlay"></span>
+            </button>
+        </div>
+    </section>
+
+    <!--SECCIÓN SKILLS-->
+    <section class="skills" id="skills">
+        <div class="contenido-seccion">
+            <h2>Skills</h2>
+            <div class="fila">
+                <!-- Technical Skills -->
+                <div class="col">
+                    <h3>Technical Skills</h3>
+                    <div class="skill">
+                        <span>JavaScript</span>
+                        <div class="barra-skills">
+                            <div class="progreso javascript" style="width: 60%;">
+                                <span>60%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>HTML & CSS</span>
+                        <div class="barra-skills">
+                            <div class="progreso htmlcss" style="width: 75%;">
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Python</span> 
+                        <div class="barra-skills">
+                            <div class="progreso python" style="width: 68%;">
+                                <span>68%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Photoshop</span>
+                        <div class="barra-skills">
+                            <div class="progreso photoshop" style="width: 50%;">
+                                <span>50%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Canva</span>
+                        <div class="barra-skills">
+                            <div class="progreso canva" style="width: 80%;">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>After Effects</span> 
+                        <div class="barra-skills">
+                            <div class="progreso after" style="width: 55%;">
+                                <span>55%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Illustrator</span>
+                        <div class="barra-skills">
+                            <div class="progreso illustrator" style="width: 40%;">
+                                <span>40%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>3D Max</span>
+                        <div class="barra-skills">
+                            <div class="progreso dmax" style="width: 38%;">
+                                <span>38%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Maya</span>
+                        <div class="barra-skills">
+                            <div class="progreso maya" style="width: 35%;">
+                                <span>35%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Professional Skills -->
+                <div class="col">
+                    <h3>Professional Skills</h3>
+                    <div class="skill">
+                        <span>Customer Service</span>
+                        <div class="barra-skills">
+                            <div class="progreso customer" style="width: 92%;">
+                                <span>92%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Teamwork</span>
+                        <div class="barra-skills">
+                            <div class="progreso teamwork" style="width: 80%;">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Adaptability</span>
+                        <div class="barra-skills">
+                            <div class="progreso adaptability" style="width: 75%;">
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Creativity</span>
+                        <div class="barra-skills">
+                            <div class="progreso creativity" style="width: 82%;">
+                                <span>82%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Troubleshooting</span>
+                        <div class="barra-skills">
+                            <div class="progreso trouble" style="width: 80%;">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Leadership</span>
+                        <div class="barra-skills">
+                            <div class="progreso leader" style="width: 70%;">
+                                <span>70%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Learning</span>
+                        <div class="barra-skills">
+                            <div class="progreso learning" style="width: 90%;">
+                                <span>90%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Communication</span>
+                        <div class="barra-skills">
+                            <div class="progreso communication" style="width: 75%;">
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <span>Autonomy</span>
+                        <div class="barra-skills">
+                            <div class="progreso autonomy" style="width: 70%;">
+                                <span>70%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+    
+    <!--SECCIÓN RESUME-->
+    <section id="curriculum" class="curriculum">
+        <div class="contenido-seccion">
+            <h2>Resume</h2>
+    
+            <!-- Sección de Educación -->
+            <div class="fila">
+                <div class="col izquierda">
+                    <h3>Education</h3>
+                    <div class="item izq">
+                        <h4>Digital Animation Technology</h4>
+                        <span class="casa">SENA</span>
+                        <span class="fecha">2016-2018</span>
+                        <p>During my training in digital animation, I developed skills to create digital animated products, including audiovisual productions, motion graphics, and assets for video games. I am proficient in processes such as interleaving, main animation, and curve cleanup. Additionally, I have experience with key tools such as the Adobe Creative Suite (After Effects, Photoshop), as well as 3ds Max and Maya.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+                    <div class="item izq">
+                        <h4>Marketing Assistant Technician</h4>
+                        <span class="casa">CENSA</span>
+                        <span class="fecha">2018-2022</span>
+                        <p>As a graduate of the Technical Labor in Marketing Assistant program, I possess the skills required to excel in the marketing departments of companies across various sectors. I am trained to contribute to sales management and execution, product development, business plan design, and the implementation of loyalty and customer service strategies. Additionally, I have experience in creating advertising pieces and content that capture public attention and effectively promote the brand. My training equips me to support the development of effective strategies and the execution of tactics that enhance commercial performance and customer satisfaction.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+                    <div class="item izq">
+                        <h4>Software Development Technician</h4>
+                        <span class="casa">Universidad Pontificia Bolivariana</span>
+                        <span class="fecha">2023-Currently</span>
+                        <p>As a software development technician, I have completed the theoretical portion of my training and am about to start my internship. I have solid knowledge in the analysis, modeling, development, and implementation of IT solutions for both web environments and mobile devices. I am proficient in programming languages such as Python, HTML, CSS, JavaScript, and Kotlin. I am capable of designing, coding, debugging, and securing source code, as well as creating effective applications. Additionally, I have developed skills in programming fundamentals, object-oriented programming, and both soft and business skills, with proficiency in English.</p>
+                        <div class="conectori">
+                            <div class="circuloi"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Sección de Experiencia Laboral -->
+                <div class="col derecha">
+                    <h3>Work Experience</h3>
+                    <div class="item der">
+                        <h4>Logistics Assistant, Service Advisor</h4>
+                        <span class="casa">Tuhome</span>
+                        <span class="fecha">2022-2024</span>
+                        <p>I held a multifaceted role encompassing sales, customer service, and marketing advisory functions. My focus was on delivering exceptional customer experiences from initial contact to post-purchase. Additionally, I successfully executed digital marketing campaigns, resulting in a 20% increase in website traffic. In my role as a logistics assistant, I was responsible for managing the shipping and stock of products, ensuring accurate inventory levels and timely delivery.</p>
+                        <div class="conectord">
+                            <div class="circulod"></div>
+                        </div>
+                    </div>
+                    <div class="item der">
+                        <h4>Service Advisor</h4>
+                        <span class="casa">Comfama</span>
+                        <span class="fecha">2021-2022</span>
+                        <p>As a Service Advisor, I delivered comprehensive affiliate support while spearheading the digitization and optimization of processes including documentation validation, credit, and subsidy management. This role honed my skills in database management, regulatory compliance, and digital customer service.</p>
+                        <div class="conectord">
+                            <div class="circulod"></div>
+                        </div>
+                    </div>
+                    <div class="item der">
+                        <h4>Counselor</h4>
+                        <span class="casa">Bancolombia</span>
+                        <span class="fecha">2020-2021</span>
+                        <p>As a Counselor, I bridged the gap between clients and our digital platforms. My role was to facilitate a smooth transition to digital services by providing personalized guidance and support. I resolved client inquiries and empowered them to confidently utilize our online tools.</p>
+                        <div class="conectord">
+                            <div class="circulod"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--SECCIÓN PORTAFOLIO-->
+    <section id="portfolio" class="portfolio">
+        <div class="contenido-seccion">
+            <h2>PROJECTS</h2>
+            <div class="galeria">
+                <div class="proyecto">
+                    <img src="img/chef.png" alt="">
+                    <div class="overlay">
+                        <h3>Development</h3>
+                        <p>Mobile App</p>
+                    </div>
+                </div>
+                <div class="proyecto">
+                    <img src="img/web.png" alt="">
+                    <div class="overlay">
+                        <h3>Development</h3>
+                        <p>Web</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--SECCIÓN CONTACTO-->
+    <section id="contacto" class="contacto">
+        <div class="contenido-seccion">
+            <h2>CONTACT</h2>
+            <div class="fila">
+                <!--formulario-->
+                <div class="col">
+                    <input type="text" placeholder="Your Name">
+                    <input type="text" placeholder="Phone Number">
+                    <input type="text" placeholder="Email">
+                    <input type="text" placeholder="Title">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                    <button>
+                        Send Message<i class="fa-solid fa-paper-plane"></i>
+                        <span class="overlay"></span>
+                    </button>
+                </div>
+                <div class="col">
+                    <div class="info">
+                        <ul>
+                            <li>
+                                <i class="fa-solid fa-location-dot"></i>
+                                Saint Georges, QC
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-mobile-screen"></i>
+                                Call me: 581 688 5368
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-envelope"></i>
+                                Email: laura-estefania52@hotmail.com
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--footer-->
+    <footer>
+        <a href="#inicio" class="arriba">
+            <i class="fa-solid fa-angles-up"></i>
+        </a>
+        <div class="redes">
+            <a id="footer-instagram" href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a id="footer-facebook" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a id="footer-linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+    </footer>
+    <script src="script.js"></script>    
+
+</body>
+</html>
