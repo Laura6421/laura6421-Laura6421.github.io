@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="estilo.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.6.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
     <!--MENÚ ENCABEZADO-->
@@ -373,36 +374,15 @@
         <div class="contenido-seccion">
             <h2>CONTACT</h2>
             <div class="fila">
-                <!--formulario-->
                 <div class="col">
-                    <input type="text" placeholder="Your Name">
-                    <input type="text" placeholder="Phone Number">
-                    <input type="text" placeholder="Email">
-                    <input type="text" placeholder="Title">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
-                    <button>
-                        Send Message<i class="fa-solid fa-paper-plane"></i>
-                        <span class="overlay"></span>
-                    </button>
-                </div>
-                <div class="col">
-                    <div class="info">
-                        <ul>
-                            <li>
-                                <i class="fa-solid fa-location-dot"></i>
-                                Saint Georges, QC
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-mobile-screen"></i>
-                                Call me: 581 688 5368
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-envelope"></i>
-                                Email: laura-estefania52@hotmail.com
-                            </li>
-                        </ul>
-                    </div>
-
+                    <form id="contact-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="text" name="phone" placeholder="Phone Number" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="text" name="title" placeholder="Title" required>
+                        <textarea name="message" cols="30" rows="10" placeholder="Message" required></textarea>
+                        <button type="submit">Send Message<i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -418,7 +398,11 @@
             <a id="footer-linkedin" href="#"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
     </footer>
-    <script src="script.js"></script>    
-
+    <script src="script.js"></script>
+    <script>
+        (function() {
+            emailjs.init("Y6zNH6_UwNtoqgoKE");
+        })();
+    </script>   
 </body>
 </html>

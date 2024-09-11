@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('footer-linkedin').href = urls.linkedin;
     }
 
-    // Ejecutar la función para establecer los enlaces
+    // imprimir pdf de CV
     setSocialMediaLinks();
 });
 
@@ -79,12 +79,49 @@ document.addEventListener('DOMContentLoaded', function() {
     const downloadBtn = document.getElementById('downloadBtn');
     
     downloadBtn.addEventListener('click', function() {
-        const pdfUrl = 'img/cv_Laura_Martinez.pdf'; // Cambia esto a la ruta correcta de tu archivo PDF
+        const pdfUrl = 'img/cv_Laura_Martinez.pdf'; 
         const link = document.createElement('a');
         link.href = pdfUrl;
-        link.download = 'cv_Laura_Martinez.pdf'; // El nombre del archivo que se descargará
+        link.download = 'cv_Laura_Martinez.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     });
 });
+
+    // Enviar mensaje de contacto 
+let formSubmitted = false; 
+
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    if (formSubmitted) {
+        alert('The form has already been submitted.');
+        return;
+    }
+
+    formSubmitted = true; 
+    const serviceID = 'service_rxdr0dr';  
+    const templateID = 'template_6sixr9j'; 
+
+    const submitButton = document.querySelector('#contact-form button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...'; 
+
+    emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+            alert('Message sent successfully!');
+            document.getElementById('contact-form').reset();
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send Message'; 
+            formSubmitted = false; 
+        }, (err) => {
+            alert('Failed to send message. Please try again.');
+            console.error(err);
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send Message'; 
+            formSubmitted = false; 
+        });
+});
+
+
