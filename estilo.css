@@ -845,4 +845,124 @@ footer .arriba {
         width: 100%;
     }
 }
+/* Estilos generales del panel de información */
+.project-panel {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 35, 38, 0.9); /* Fondo oscuro con transparencia */
+    z-index: 1000;
+    color: #fff;
+    overflow: auto;
+}
+
+.panel-content {
+    position: relative;
+    margin: 5% auto; /* Ajustado para que esté centrado verticalmente */
+    padding: 20px;
+    background-color: #1e2326; /* Color de fondo del panel */
+    width: 80%;
+    max-width: 600px;
+    border-radius: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.panel-content h3 {
+    font-family: 'Righteous', sans-serif; /* Fuente del título */
+    margin-bottom: 10px;
+    color: #fff; /* Color del título */
+}
+
+.panel-content p {
+    font-family: 'Righteous'; /* Fuente del texto del contenido */
+    margin-bottom: 20px;
+}
+
+.panel-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    border: 5px solid #914861; /* Borde alrededor de la imagen */
+}
+
+.close-panel {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-panel:hover {
+    color: #914861; /* Color del icono al pasar el cursor */
+}
+
+/* Cerrar el panel si se hace clic fuera del contenido del panel */
+.project-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 35, 38, 0.9); /* Fondo oscuro con transparencia */
+    z-index: -1; /* Detrás del contenido */
+}
+/* Estilo general para los intereses */
+.project-panel .panel-content .project-habilities {
+    margin-top: 20px;
+}
+
+.project-panel .panel-content .project-habilities h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #ffffff; /* Puedes ajustar el color según tu diseño */
+}
+
+/* Contenedor de intereses */
+.project-panel .panel-content .project-habilities .contenedor-intereses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espacio entre los elementos */
+}
+
+/* Estilo para cada interés */
+.project-panel .panel-content .project-habilities .contenedor-intereses .interes {
+    width: 100px;
+    height: 100px;
+    background-color: #252A2E; /* Fondo oscuro */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    color: #ffffff; /* Color del texto */
+    text-align: center;
+    font-size: 14px; /* Tamaño de fuente */
+    padding: 5px; /* Espaciado interno */
+}
+
+/* Estilo para el hover en cada interés */
+.project-panel .panel-content .project-habilities .contenedor-intereses .interes:hover {
+    background-color: #914861; /* Fondo en hover */
+}
+
+/* Estilo para los íconos dentro de cada interés */
+.project-panel .panel-content .project-habilities .contenedor-intereses .interes i {
+    font-size: 30px; /* Tamaño del icono */
+    margin-bottom: 5px; /* Espacio debajo del icono */
+}
+
+/* Estilo para el texto dentro de cada interés */
+.project-panel .panel-content .project-habilities .contenedor-intereses .interes span {
+    font-size: 14px; /* Tamaño del texto */
+    line-height: 1.2; /* Altura de línea para el texto */
+}
 

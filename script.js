@@ -20,30 +20,21 @@ function seleccionar(){
 
 //funccion animaciones//
 
-function efectoHabilidades(){
-    var skills = document.getElementById("skills");
-    var distancia_skils = window.innerHeight - skills.getBoundingClientRect().top;
-    if(distancia_skils >= 300){
-        let habilidades = document.getElementsByClassName("progreso");
-        habilidades[0].classList.add("javascript");
-        habilidades[1].classList.add("htmlcss");
-        habilidades[2].classList.add("python");
-        habilidades[3].classList.add("photoshop");
-        habilidades[4].classList.add("canva");
-        habilidades[5].classList.add("after");
-        habilidades[6].classList.add("illustrator");
-        habilidades[7].classList.add("dmax");
-        habilidades[8].classList.add("maya");
-        habilidades[9].classList.add("customer");
-        habilidades[10].classList.add("teamwork");
-        habilidades[11].classList.add("adaptability");
-        habilidades[12].classList.add("creativity");
-        habilidades[13].classList.add("trouble");
-        habilidades[14].classList.add("leader");
-        habilidades[15].classList.add("learning");
-        habilidades[16].classList.add("communication");
-        habilidades[17].classList.add("autonomy");
+function efectoHabilidades() {
+    const skills = document.getElementById("skills");
+    const distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
 
+    if (distancia_skills >= 300) {
+        const habilidades = document.getElementsByClassName("progreso");
+        const skillClasses = [
+            "javascript", "htmlcss", "python", "photoshop", "canva", "after",
+            "illustrator", "dmax", "maya", "customer", "teamwork", "adaptability",
+            "creativity", "trouble", "leader", "learning", "communication", "autonomy"
+        ];
+
+        Array.from(habilidades).forEach((el, index) => {
+            if (skillClasses[index]) el.classList.add(skillClasses[index]);
+        });
     }
 }
 window.onscroll = function(){
@@ -123,5 +114,123 @@ document.getElementById('contact-form').addEventListener('submit', function(even
             formSubmitted = false; 
         });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Selecciona todos los elementos con la clase 'proyecto'
+    const projects = document.querySelectorAll('.proyecto');
+    
+    // Selecciona el panel y los elementos dentro de él
+    const panel = document.getElementById('project-panel');
+    const closePanel = document.getElementById('close-panel');
+    const projectTitle = document.getElementById('project-title');
+    const projectDescription = document.getElementById('project-description');
+    const projectImage = document.getElementById('project-image');
+    const projectContent = document.getElementById('project-content');
+    
+    // Información de los proyectos con intereses añadidos
+    const projectInfo = {
+        'chef.png': {
+            title: 'Mobile App Development',
+            description: 'As part of the mobile app development course, I have developed an application in Kotlin that integrates a local database with CRUD (Create, Read, Update, Delete) operations and a connection to an external API. The application presents the data obtained from the API in a drop-down list, allowing users to interact with the information intuitively.',
+            image: 'img/chef.png',
+            video: 'img/MOBILE.mp4',  // Actualiza la URL del video si es necesario
+            habilities: ['DATA BASE', 'KOTLIN', 'API', 'CRUD', 'UI TESTING'] // Añadido
+        },
+        'web.png': {
+            title: 'Web Development',
+            description: 'We developed a web application using HTML, CSS, and JavaScript, along with a MySQL database, to manage school data. The application allows users to list students and courses, and upon selecting a student or course, displays detailed associated information. The MySQL database was created to ensure efficient and accurate data queries, seamlessly integrating with the web interface and JavaScript functionality.',
+            image: 'img/web.png',
+            video: 'img/WEB.mp4',  // Actualiza la URL del video si es necesario
+            habilities: ['HTML', 'JAVASCRIPT', 'CSS', 'DATA BASE', 'FRAMEWORKS'] // Añadido
+        }
+    };
+    
+    // Función para mostrar el panel con información del proyecto
+    function showPanel(imageSrc) {
+        const info = projectInfo[imageSrc];
+        if (info) {
+            // Actualiza los detalles del proyecto
+            projectTitle.textContent = info.title;
+            projectDescription.textContent = info.description;
+            projectImage.src = info.image || '';  // Muestra la imagen solo si está disponible
+            
+            // Mostrar el video si está disponible
+            if (info.video) {
+                projectContent.innerHTML = `
+                    <video id="project-video" width="100%" controls>
+                        <source src="${info.video}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                `;
+            } else {
+                projectContent.innerHTML = ''; // Limpiar contenido si no hay video
+            }
+            
+            // Mostrar habilidades si están disponibles
+            if (info.habilities && info.habilities.length > 0) {
+                // Mapa de íconos para habilidades
+                const iconMap = {
+                    'DATA BASE': 'fa-database',
+                    'KOTLIN': 'fa-code',
+                    'API': 'fa-plug',
+                    'CRUD': 'fa-cogs',
+                    'UI TESTING': 'fa-vial', // Añade más íconos según sea necesario
+                    'HTML': 'fa-file-code',
+                    'JAVASCRIPT': 'fa-window-restore',
+                    'CSS': 'fa-pager',
+                    'FRAMEWORKS': 'fa-cogs' // Puedes cambiarlo si tienes íconos específicos para frameworks
+                };
+    
+                const habilitiesHTML = `
+                    <div class="project-habilities">
+                        <h4>Habilities</h4>
+                        <div class="contenedor-intereses">
+                            ${info.habilities.map(interest => `
+                                <div class="interes">
+                                    <i class="fa-solid ${iconMap[interest] || 'fa-tag'}"></i> <!-- Íconos específicos -->
+                                    <span>${interest}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                projectContent.innerHTML += habilitiesHTML;
+            }
+            
+            panel.style.display = 'block';
+        }
+    }
+    
+    // Función para ocultar el panel y detener el video
+    function hidePanel() {
+        // Detener el video si está presente
+        const video = document.getElementById('project-video');
+        if (video) {
+            video.pause();  // Pausa el video
+            video.src = ''; // Limpia la fuente del video
+        }
+        
+        panel.style.display = 'none';
+    }
+    
+    // Añadir evento de clic a cada proyecto
+    projects.forEach(project => {
+        project.addEventListener('click', function() {
+            const imgSrc = this.querySelector('img').src.split('/').pop();
+            showPanel(imgSrc);
+        });
+    });
+    
+    // Añadir evento de clic para cerrar el panel
+    closePanel.addEventListener('click', hidePanel);
+    
+    // Cerrar el panel si se hace clic fuera del contenido del panel
+    window.addEventListener('click', function(event) {
+        if (event.target === panel) {
+            hidePanel();
+        }
+    });
+});
+
 
 
