@@ -966,3 +966,51 @@ footer .arriba {
     line-height: 1.2; /* Altura de línea para el texto */
 }
 
+/* Estilo para el panel de proyectos */
+#project-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#project-panel #project-content {
+    margin-top: 20px;
+}
+
+#project-panel img, #project-panel video {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilo para el botón de cerrar panel */
+#close-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Estilos para mejorar la apariencia en móviles */
+@media only screen and (max-width: 768px) {
+    #nav a {
+        padding: 10px;
+    }
+
+    #project-panel {
+        padding: 10px;
+    }
+
+    #close-panel {
+        font-size: 20px;
+    }
+}
+
