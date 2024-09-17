@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 projectContent.innerHTML += habilitiesHTML;
             }
             
-            panel.style.display = 'block';
+            panel.style.display = 'block';  
         }
     }
     
@@ -231,6 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
 
 
