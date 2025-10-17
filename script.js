@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
     // Enviar mensaje de contacto 
-let formSubmitted = false; 
+let formSubmitted = false;
 
 document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -91,27 +91,29 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         return;
     }
 
-    formSubmitted = true; 
-    const serviceID = 'service_rxdr0dr';  
-    const templateID = 'template_6sixr9j'; 
+    formSubmitted = true;
 
-    const submitButton = document.querySelector('#contact-form button[type="submit"]');
+    const serviceID = 'service_rxdr0dr';
+    const templateID = 'template_6sixr9j';
+    const submitButton = this.querySelector('button[type="submit"]');
+    
     submitButton.disabled = true;
-    submitButton.textContent = 'Sending...'; 
+    submitButton.textContent = 'Sending...';
 
     emailjs.sendForm(serviceID, templateID, this)
-        .then(() => {
+        .then(response => {
+            console.log('SUCCESS!', response.status, response.text);
             alert('Message sent successfully!');
-            document.getElementById('contact-form').reset();
+            this.reset();
             submitButton.disabled = false;
-            submitButton.textContent = 'Send Message'; 
-            formSubmitted = false; 
-        }, (err) => {
+            submitButton.textContent = 'Send Message';
+            formSubmitted = false;
+        }, error => {
+            console.error('FAILED...', error);
             alert('Failed to send message. Please try again.');
-            console.error(err);
             submitButton.disabled = false;
-            submitButton.textContent = 'Send Message'; 
-            formSubmitted = false; 
+            submitButton.textContent = 'Send Message';
+            formSubmitted = false;
         });
 });
 
