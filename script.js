@@ -7,7 +7,6 @@ function mostrarOcultarMenu(){
     }else{
         document.getElementById("nav").classList ="responsive";
         menuVisible = true;
-
     }
 }
 
@@ -15,11 +14,9 @@ function seleccionar(){
     //ocultar el menu una vez seleccionada//
     document.getElementById("nav").classList = "";
     menuVisible = false;
-    
 }
 
-//funccion animaciones//
-
+//funcion animaciones//
 function efectoHabilidades() {
     const skills = document.getElementById("skills");
     const distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
@@ -49,26 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
         linkedin: 'https://www.linkedin.com/in/laura-martinez-169245238/'
     };
 
-     // Función para asignar URLs a los enlaces
-     function setSocialMediaLinks() {
-        // Sección principal
+    function setSocialMediaLinks() {
         document.querySelector('section .redes #instagram').href = urls.instagram;
         document.querySelector('section .redes #facebook').href = urls.facebook;
         document.querySelector('section .redes #linkedin').href = urls.linkedin;
 
-        // Pie de página
         document.getElementById('footer-instagram').href = urls.instagram;
         document.getElementById('footer-facebook').href = urls.facebook;
         document.getElementById('footer-linkedin').href = urls.linkedin;
     }
 
-    // imprimir pdf de CV
     setSocialMediaLinks();
 });
 
+// imprimir pdf de CV
 document.addEventListener('DOMContentLoaded', function() {
     const downloadBtn = document.getElementById('downloadBtn');
-    
     downloadBtn.addEventListener('click', function() {
         const pdfUrl = 'img/cv_Laura_Martinez.pdf'; 
         const link = document.createElement('a');
@@ -80,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-    // Enviar mensaje de contacto 
+// Enviar mensaje de contacto
 let formSubmitted = false; 
 
 document.getElementById('contact-form').addEventListener('submit', function(event) {
@@ -115,79 +108,105 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         });
 });
 
+// SECCIÓN PORTAFOLIO CON PASARELA DE IMÁGENES
 document.addEventListener('DOMContentLoaded', function() {
-    // Selecciona todos los elementos con la clase 'proyecto'
     const projects = document.querySelectorAll('.proyecto');
-    
-    // Selecciona el panel y los elementos dentro de él
     const panel = document.getElementById('project-panel');
     const closePanel = document.getElementById('close-panel');
     const projectTitle = document.getElementById('project-title');
     const projectDescription = document.getElementById('project-description');
-    const projectImage = document.getElementById('project-image');
     const projectContent = document.getElementById('project-content');
-    
-    // Información de los proyectos con intereses añadidos
+
     const projectInfo = {
         'chef.png': {
             title: 'Mobile App Development',
-            description: 'As part of the mobile app development course, I have developed an application in Kotlin that integrates a local database with CRUD (Create, Read, Update, Delete) operations and a connection to an external API. The application presents the data obtained from the API in a drop-down list, allowing users to interact with the information intuitively.',
+            description: 'As part of the mobile app development course, I have developed an application in Kotlin that integrates a local database with CRUD operations and a connection to an external API.',
             image: 'img/chef.png',
-            video: 'img/MOBILE.mp4',  // Actualiza la URL del video si es necesario
-            habilities: ['DATA BASE', 'KOTLIN', 'API', 'CRUD', 'UI TESTING'] // Añadido
+            // video: 'img/MOBILE.mp4', // VIDEO comentado
+            images: [
+                'img/chef_1.png',
+                'img/chef_2.png',
+                'img/chef_3.png'
+            ],
+            habilities: ['DATA BASE', 'KOTLIN', 'API', 'CRUD', 'UI TESTING']
         },
         'web.png': {
             title: 'Web Development',
-            description: 'We developed a web application using HTML, CSS, and JavaScript, along with a MySQL database, to manage school data. The application allows users to list students and courses, and upon selecting a student or course, displays detailed associated information. The MySQL database was created to ensure efficient and accurate data queries, seamlessly integrating with the web interface and JavaScript functionality.',
+            description: 'Web application using HTML, CSS, JavaScript, and MySQL database to manage school data.',
             image: 'img/web.png',
-            video: 'img/WEB.mp4',  // Actualiza la URL del video si es necesario
-            habilities: ['HTML', 'JAVASCRIPT', 'CSS', 'DATA BASE', 'FRAMEWORKS'] // Añadido
+            // video: 'img/WEB.mp4', // VIDEO comentado
+            images: [
+                'img/web_1.png',
+                'img/web_2.png'
+            ],
+            habilities: ['HTML', 'JAVASCRIPT', 'CSS', 'DATA BASE', 'FRAMEWORKS']
         }
     };
-    
-    // Función para mostrar el panel con información del proyecto
+
+    function initCarousel(carousel) {
+        const imgs = carousel.querySelectorAll('img');
+        let index = 0;
+        const prev = carousel.querySelector('.prev');
+        const next = carousel.querySelector('.next');
+
+        function showImg(i) {
+            imgs.forEach((img, idx) => img.classList.toggle('active', idx === i));
+        }
+
+        prev.addEventListener('click', () => {
+            index = (index - 1 + imgs.length) % imgs.length;
+            showImg(index);
+        });
+        next.addEventListener('click', () => {
+            index = (index + 1) % imgs.length;
+            showImg(index);
+        });
+
+        showImg(index);
+    }
+
     function showPanel(imageSrc) {
         const info = projectInfo[imageSrc];
         if (info) {
-            // Actualiza los detalles del proyecto
             projectTitle.textContent = info.title;
             projectDescription.textContent = info.description;
-            projectImage.src = info.image || '';  // Muestra la imagen solo si está disponible
-            
-            // Mostrar el video si está disponible
-            if (info.video) {
-                projectContent.innerHTML = `
-                    <video id="project-video" width="100%" controls>
-                        <source src="${info.video}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                `;
+            projectImage.src = info.image || '';
+
+            // --- NUEVO CARRUSEL ---
+            if (info.images && info.images.length > 0) {
+                let carouselHTML = '<div class="carousel">';
+                info.images.forEach((img, i) => {
+                    carouselHTML += `<img src="${img}" class="${i===0?'active':''}">`;
+                });
+                carouselHTML += `<button class="prev">&#10094;</button><button class="next">&#10095;</button></div>`;
+                projectContent.innerHTML = carouselHTML;
+
+                initCarousel(projectContent.querySelector('.carousel'));
             } else {
-                projectContent.innerHTML = ''; // Limpiar contenido si no hay video
+                projectContent.innerHTML = '';
             }
-            
-            // Mostrar habilidades si están disponibles
+
+            // Habilidades
             if (info.habilities && info.habilities.length > 0) {
-                // Mapa de íconos para habilidades
                 const iconMap = {
                     'DATA BASE': 'fa-database',
                     'KOTLIN': 'fa-code',
                     'API': 'fa-plug',
                     'CRUD': 'fa-cogs',
-                    'UI TESTING': 'fa-vial', // Añade más íconos según sea necesario
+                    'UI TESTING': 'fa-vial',
                     'HTML': 'fa-file-code',
                     'JAVASCRIPT': 'fa-window-restore',
                     'CSS': 'fa-pager',
-                    'FRAMEWORKS': 'fa-cogs' // Puedes cambiarlo si tienes íconos específicos para frameworks
+                    'FRAMEWORKS': 'fa-cogs'
                 };
-    
+
                 const habilitiesHTML = `
                     <div class="project-habilities">
                         <h4>Habilities</h4>
                         <div class="contenedor-intereses">
                             ${info.habilities.map(interest => `
                                 <div class="interes">
-                                    <i class="fa-solid ${iconMap[interest] || 'fa-tag'}"></i> <!-- Íconos específicos -->
+                                    <i class="fa-solid ${iconMap[interest] || 'fa-tag'}"></i>
                                     <span>${interest}</span>
                                 </div>
                             `).join('')}
@@ -196,43 +215,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 projectContent.innerHTML += habilitiesHTML;
             }
-            
+
             panel.style.display = 'block';  
         }
     }
-    
-    // Función para ocultar el panel y detener el video
+
     function hidePanel() {
-        // Detener el video si está presente
-        const video = document.getElementById('project-video');
-        if (video) {
-            video.pause();  // Pausa el video
-            video.src = ''; // Limpia la fuente del video
-        }
-        
         panel.style.display = 'none';
     }
-    
-    // Añadir evento de clic a cada proyecto
+
     projects.forEach(project => {
         project.addEventListener('click', function() {
             const imgSrc = this.querySelector('img').src.split('/').pop();
             showPanel(imgSrc);
         });
     });
-    
-    // Añadir evento de clic para cerrar el panel
+
     closePanel.addEventListener('click', hidePanel);
-    
-    // Cerrar el panel si se hace clic fuera del contenido del panel
+
     window.addEventListener('click', function(event) {
-        if (event.target === panel) {
-            hidePanel();
-        }
+        if (event.target === panel) hidePanel();
     });
 });
-
-
-
-
 
